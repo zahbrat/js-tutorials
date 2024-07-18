@@ -1,0 +1,21 @@
+<!DOCTYPE html>
+<html lang="uk">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Привітання</title>
+</head>
+<body>
+  <input type="text" placeholder="Ваше ім'я?" id="name-input" />
+  <h1>Привіт, <span id="name-output">незнайомець</span>!</h1>
+
+  <script>
+    const nameInput = document.querySelector('#name-input');
+    const nameOutput = document.querySelector('#name-output');
+
+    nameInput.addEventListener('input', () => {
+      nameOutput.textContent = nameInput.value.trim() !== '' ? nameInput.value : 'незнайомець';
+    });
+  </script>
+</body>
+</html>
