@@ -1,0 +1,40 @@
+<!DOCTYPE html>
+<html lang="uk">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Вибір кольору фону</title>
+</head>
+<body>
+  <form>
+    <p>Choose a color:</p>
+    <label>
+      <input type="radio" name="color" value="red" />
+      Red
+    </label>
+    <label>
+      <input type="radio" name="color" value="white" />
+      White
+    </label>
+    <label>
+      <input type="radio" name="color" value="green" />
+      Green
+    </label>
+  </form>
+
+  <script>
+    const radioButtons = document.querySelectorAll('input[name="color"]');
+
+    radioButtons.forEach(radio => {
+      radio.addEventListener('change', (event) => {
+        if (event.target.checked) {
+          document.body.style.backgroundColor = event.target.value;
+        }
+      });
+    });
+
+    // Змінити колір фону на початковий обраний варіант
+    document.body.style.backgroundColor = document.querySelector('input[name="color"]:checked').value;
+  </script>
+</body>
+</html>
