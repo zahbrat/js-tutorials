@@ -1,0 +1,25 @@
+<!DOCTYPE html>
+<html lang="uk">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Зміна розміру тексту</title>
+</head>
+<body>
+  <input type="range" id="font-size-control" min="10" max="100" />
+  <br />
+  <span id="text">Абракадабра!</span>
+
+  <script>
+    const fontSizeControl = document.querySelector('#font-size-control');
+    const text = document.querySelector('#text');
+
+    fontSizeControl.addEventListener('input', () => {
+      text.style.fontSize = `${fontSizeControl.value}px`;
+    });
+
+    // Встановити початковий розмір тексту на значення повзунка
+    text.style.fontSize = `${fontSizeControl.value}px`;
+  </script>
+</body>
+</html>
