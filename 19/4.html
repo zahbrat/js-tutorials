@@ -1,0 +1,39 @@
+<!DOCTYPE html>
+<html lang="uk">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Валідація введення</title>
+  <style>
+    #validation-input {
+      border: 3px solid #bdbdbd;
+    }
+
+    #validation-input.valid {
+      border-color: #4caf50;
+    }
+
+    #validation-input.invalid {
+      border-color: #f44336;
+    }
+  </style>
+</head>
+<body>
+  <input type="text" placeholder="Введи 6 символів" id="validation-input" data-length="6" />
+
+  <script>
+    const validationInput = document.querySelector('validation-input');
+    const inputLength = parseInt(validationInput.getAttribute('data-length'), 10);
+
+    validationInput.addEventListener('blur', () => {
+      if (validationInput.value.length === inputLength) {
+        validationInput.classList.remove('invalid');
+        validationInput.classList.add('valid');
+      } else {
+        validationInput.classList.remove('valid');
+        validationInput.classList.add('invalid');
+      }
+    });
+  </script>
+</body>
+</html>
