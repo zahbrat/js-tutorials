@@ -1,0 +1,79 @@
+<!DOCTYPE html>
+<html lang="en">
+  <head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>Document</title>
+
+    <link rel="stylesheet" href="style.css" />
+  </head>
+  <body>
+    <div id="grandparent">
+      Дідусь
+      <div id="parent">
+        Батько
+        <div id="child">Дитина</div>
+      </div>
+    </div>
+
+    <div class="toolbar" id="mainToolbar">
+      Панель інструментів
+      <div class="button-group" id="editGroup">
+        Редагування
+        <button id="cutBtn">Вирізати</button>
+        <button id="copyBtn">Копіювати</button>
+        <button id="pasteBtn">Вставити</button>
+      </div>
+      <div class="button-group" id="formatGroup">
+        Форматування
+        <button id="boldBtn">Жирний</button>
+        <button id="italicBtn">Курсив</button>
+        <button id="underlineBtn">Підкреслений</button>
+      </div>
+    </div>
+
+    <h2>Делегування події</h2>
+
+    <p class="output">Selected color: -</p>
+    <div class="color-palette"></div>
+
+    <!-- Films -->
+
+    <ul class="list"></ul>
+
+    <h1>Задачі</h1>
+    <h2>
+      #1 - Розробіть програму для відображення списку користувачів з можливістю
+      видалення окремих користувачів. Використовуйте делегування подій для
+      обробки кліків на кнопках видалення, щоб зменшити кількість обробників
+      подій та спростити код.
+    </h2>
+
+    <ul id="userList">
+      <li data-id="1">
+        John Doe
+        <button class="deleteButton">Delete</button>
+      </li>
+      <li data-id="2">
+        Jane Smith
+        <button class="deleteButton">Delete</button>
+      </li>
+      <li data-id="3">
+        Bob Johnson
+        <button class="deleteButton">Delete</button>
+      </li>
+    </ul>
+
+    <div class="gallery">
+  <div class="slider">
+    <img id="slider-image" src="" alt="" />
+  </div>
+  <ul class="gallery-list">
+    <!-- Тут будуть маленькі прев'юшки картинок -->
+  </ul>
+</div>
+
+    <script src="js/lesson.js"></script>
+    <script src="js/homework.js"></script>
+  </body>
+</html>
