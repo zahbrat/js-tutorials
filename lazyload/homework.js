@@ -1,26 +1,22 @@
-document.addEventListener("DOMContentLoaded", () => {
-  const lazyImages = document.querySelectorAll(".lazy-image");
+// Слайдер змінює розмір зображення
+const sliderInput = document.querySelector(".slider__input");
+const image = document.querySelector(".slider__image");
 
-  // IntersectionObserver для лінійного завантаження зображень
-  const imageObserver = new IntersectionObserver(
-    (entries, observer) => {
-      entries.forEach((entry) => {
-        if (entry.isIntersecting) {
-          const img = entry.target;
-          img.src = img.getAttribute("data-src"); // Завантаження зображення
-          img.onload = () => img.classList.add("loaded"); // Додавання класу після завантаження
-          observer.unobserve(img); // Перестаємо спостерігати за цим зображенням
-        }
-      });
-    },
-    {
-      rootMargin: "0px 0px 200px 0px", // Почати завантаження трохи раніше
-      threshold: 0.1,
-    }
-  );
+sliderInput.addEventListener(
+  "input",
+  _.debounce(() => {
+    const scale = sliderInput.value / 100;
+    image.style.transform = `scale(${scale})`;
+  }, 200)
+);
 
-  // Спостереження за кожним зображенням з атрибутом data-src
-  lazyImages.forEach((image) => {
-    imageObserver.observe(image);
-  });
-});
+// Плавний рух об'єкта за мишкою
+const box = document.getElementById("box");
+
+document.addEventListener(
+  "mousemove",
+  _.debounce((event) => {
+    box.style.left = `${event.pageX - 25}px`;
+    box.style.top = `${event.pageY - 25}px`;
+  }, 100)
+);
