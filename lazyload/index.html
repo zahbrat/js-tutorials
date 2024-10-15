@@ -1,155 +1,291 @@
 <!DOCTYPE html>
-<html>
+<html lang="en">
   <head>
-    <meta http-equiv="content-type" content="text/html; charset=utf-8" />
-    <title>lodash</title>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>Document</title>
 
-    <style type="text/css" media="all">
-      body {
-        height: 5000vh;
-        font-family: sans-serif;
-        line-height: 1.5;
-        color: #212121;
-        background-color: #f5f5f5;
+    <style>
+      * {
+        box-sizing: border-box;
+      }
+      section {
+        height: 100vh;
       }
 
-      .cta {
+      /* img{
+        width: 150px;
+      } */
+
+      .menu {
+        position: fixed;
+        display: flex;
+        justify-content: space-around;
+        border-bottom: 1px solid black;
+        background-color: white;
+        top: 0;
+      }
+
+      .menu-item {
+        padding: 0.5rem;
+      }
+
+      .menu-item.active {
+        color: white;
+        background-color: maroon;
+      }
+
+      .section {
+        height: 100vh;
+      }
+
+      .section:nth-child(1) {
+        background: #ccc;
+      }
+
+      .section:nth-child(2) {
+        background: #00f;
+      }
+
+      .section:nth-child(3) {
+        background: #0f0;
+      }
+
+      .fruits-list {
         display: flex;
         justify-content: center;
         align-items: center;
-        font-size: 20px;
+        flex-wrap: wrap;
+        gap: 100px;
+        text-align: center;
       }
 
-      .cta::before,
-      .cta::after {
-        content: "\2193";
-        margin-left: 4px;
-        margin-right: 4px;
+      .fruits-list li {
+        list-style-type: none;
+        width: 20vw;
       }
-      .event-counter {
-        background-color: orange;
-        left: 100px;
-        top: 0px;
-        position: sticky;
+
+      .fruits-list img {
+        width: 150px;
+      }
+
+      .fruit-visible {
+        outline: 5px solid green;
+        color: red;
+      }
+
+      .image-gallery {
         display: flex;
-        justify-content: center;
-      }
-
-      .box {
-        min-width: 160px;
-        display: inline-flex;
         flex-direction: column;
-        align-items: center;
-        justify-content: center;
-        margin-left: 8px;
-        margin-right: 8px;
-        padding: 12px;
-        border: 10px solid #03a9f4;
-        border-radius: 4px;
+        gap: 20px;
+        margin: 20px auto;
+        max-width: 1200px;
       }
 
-      .event-counter p {
-        margin: 0;
-        font-size: 16px;
+      .lazy-image {
+        width: 100%;
+        height: 200px; /* Мінімальна висота для зображень */
+        background-color: #f0f0f0; /* Колір фону для ще не завантажених зображень */
+        object-fit: cover;
+        transition: opacity 0.3s ease-in; /* Анімація */
+        opacity: 0; /* Спочатку зображення приховані */
       }
 
-      .event-counter span {
-        font-size: 48px;
-        font-family: monospace;
+      .lazy-image.loaded {
+        opacity: 1; /* Коли зображення завантажується, воно стає видимим */
       }
-
-      .slider {
-      max-width: 400px;
-      margin: 0 auto;
-    }
-
-    .slider__input {
-      width: 100%;
-    }
-
-    .slider__image {
-      display: block;
-      margin: 20px auto;
-      max-width: 100%;
-    }
-
-    #box {
-      transition: 0.5s;
-      width: 50px;
-      height: 50px;
-      background-color: red;
-      position: absolute;
-    }
     </style>
   </head>
   <body>
-    <p class="cta">Scroll me</p>
-    <div class="event-counter">
-      <div class="box">
-        <p>No timing function</p>
-        <span class="output vanilla">0</span>
-      </div>
+    <h1 style="margin-top: 1000px">Lazy Load</h1>
+    <img
+      src="https://static.vecteezy.com/system/resources/thumbnails/025/181/412/small_2x/picture-a-captivating-scene-of-a-tranquil-lake-at-sunset-ai-generative-photo.jpg"
+      alt=""
+      loading="lazy"
+    />
+    <img
+      src="https://st2.depositphotos.com/1000276/8284/i/450/depositphotos_82843516-stock-photo-fantastic-mountain-lake.jpg"
+      alt=""
+      loading="lazy"
+    />
+    <img
+      src="https://www.shutterstock.com/image-photo/anchored-boats-on-lake-hintersee-260nw-1240832764.jpg"
+      alt=""
+      loading="lazy"
+    />
+    <img
+      src="https://img.freepik.com/premium-photo/beautiful-landscape-with-lake-beautiful-landscape-with-lake_1272857-144745.jpg"
+      alt=""
+      loading="lazy"
+    />
+    <img
+      src="https://c4.wallpaperflare.com/wallpaper/228/5/197/mountain-screensavers-and-backgrounds-wallpaper-preview.jpg"
+      alt=""
+      loading="lazy"
+    />
 
-      <div class="box">
-        <p>Throttled</p>
-        <span class="output throttled">0</span>
-      </div>
+    <!-- Використовуєм Intersection observer для завантаження картинок -->
 
-      <div class="box">
-        <p>Debounced</p>
-        <span class="output debounced">0</span>
-      </div>
+    <section>
+      <img
+        alt=""
+        data-src="https://upload.wikimedia.org/wikipedia/commons/thumb/9/99/Unofficial_JavaScript_logo_2.svg/1024px-Unofficial_JavaScript_logo_2.svg.png"
+        height="500"
+      />
+    </section>
+
+    <section>
+      <img
+        alt=""
+        data-src="https://upload.wikimedia.org/wikipedia/commons/0/09/BEich.jpg"
+        height="500"
+      />
+    </section>
+
+    <section>
+      <img
+        alt=""
+        data-src="https://upload.wikimedia.org/wikipedia/commons/7/75/Marc_Andreessen.jpg"
+        height="500"
+      />
+    </section>
+
+    <h2>Відео</h2>
+
+    <section>
+      <video
+        src="https://cdn.plyr.io/static/demo/View_From_A_Blue_Moon_Trailer-576p.mp4"
+        width="100%"
+        height="300px"
+        controls
+      ></video>
+    </section>
+
+    <div class="menu">
+      <a href="#top" class="menu-item active">Top</a>
+      <a href="#middle" class="menu-item">Middle</a>
+      <a href="#bottom" class="menu-item">Bottom</a>
+    </div>
+    <main>
+      <div id="top" class="section"></div>
+      <div id="middle" class="section"></div>
+      <div id="bottom" class="section"></div>
+    </main>
+
+    <h1>Задачі</h1>
+    <h2>#1</h2>
+    <p>
+      Виконати наступне завдання для зміни стилів при прокрутці списку Створіть
+      HTML-сторінку, що містить список з 10 елементів li. Кожен елемент li
+      містить картинку та назву фрукту.
+    </p>
+
+    <ul class="fruits-list">
+      <li>
+        <img
+          src="https://www.yates.com.au/media/plants/fruit-and-citrus/pr-tn-fruit-apple.jpg"
+          alt="Fruit 1"
+        />
+        <h3>Apple</h3>
+      </li>
+      <li>
+        <img
+          src="https://m.media-amazon.com/images/I/71+cwvydvfL._AC_UF1000,1000_QL80_.jpg"
+          alt="Fruit 2"
+        />
+        <h3>Banana</h3>
+      </li>
+      <li>
+        <img
+          src="https://encrypted-tbn0.gstatic.com/images?q=tbn:ANd9GcRn58MQpxUqC4p8dYZ52vJpL44v57CWHZ2XVA&s"
+          alt="Fruit 3"
+        />
+        <h3>Cherry</h3>
+      </li>
+      <li>
+        <img
+          src="https://images.healthshots.com/healthshots/en/uploads/2023/03/01181103/Grapes-1600x900.jpg"
+          alt="Fruit 4"
+        />
+        <h3>Grapes</h3>
+      </li>
+      <li>
+        <img
+          src="https://encrypted-tbn0.gstatic.com/images?q=tbn:ANd9GcRx8dD6zAMt9Pp2s1WTKhzGxK3UsnFCFfnGvw&s"
+          alt="Fruit 5"
+        />
+        <h3>Orange</h3>
+      </li>
+      <li>
+        <img
+          src="https://plantskingdom.in/cdn/shop/products/WhatsAppImage2022-03-23at3.14.33PM_500x570.jpg?v=1648712632"
+          alt="Fruit 6"
+        />
+        <h3>Pear</h3>
+      </li>
+      <li>
+        <img src="fruit7.jpg" alt="Fruit 7" />
+        <h3>Peach</h3>
+      </li>
+      <li>
+        <img src="fruit8.jpg" alt="Fruit 8" />
+        <h3>Strawberry</h3>
+      </li>
+      <li>
+        <img src="fruit9.jpg" alt="Fruit 9" />
+        <h3>Watermelon</h3>
+      </li>
+      <li>
+        <img src="fruit10.jpg" alt="Fruit 10" />
+        <h3>Pineapple</h3>
+      </li>
+    </ul>
+
+    <div class="task-2">
+      <img
+        data-src="https://shared.akamai.steamstatic.com/store_item_assets/steam/apps/394360/ss_242abc1c2ca21f7d8694ba8d9239d8944217b29f.600x338.jpg?t=1726818385"
+        alt="Lazy loaded image"
+        width="1000"
+      />
+      <img
+        data-src="https://encrypted-tbn0.gstatic.com/images?q=tbn:ANd9GcRsZEZKC1sYm901J5k0YWKC5j10sKI78SZfCg&s"
+        width="1000"
+      />
+      <img
+        data-src="https://shared.akamai.steamstatic.com/store_item_assets/steam/apps/394360/ss_fc239db7ed07e8ec4e6440cd0c6ced88a955d90e.1920x1080.jpg?t=1726818385"
+        alt="Lazy loaded image"
+        width="1000"
+      />
     </div>
 
-    <div class="tasks">
-      <h1>Задачі</h1>
-      <div class="task task-1">
-        <h2>#1</h2>
-
-        <input class="input" />
-      </div>
-      <div class="task task-2">
-        <h2>#2</h2>
-
-        <input class="input" />
-      </div>
-      <div class="task task-3">
-        <h2>#3</h2>
-
-        <div id="graph" style="background-color: aliceblue">
-          <svg width="500" height="300">
-            <circle id="point" cx="50" cy="50" r="5" fill="blue" style="position: absolute" />
-          </svg>
-        </div>
-        <span id="coord"></span>
-      </div>
-      <div class="task task-4"></div>
-        <h2>#4</h2>
-
-        <div id="graph" style="background-color: aliceblue">
-          <svg width="500" height="300">
-            <circle id="point" cx="50" cy="50" r="5" fill="blue" style="position: absolute" />
-          </svg>
-        </div>
-        <span id="coord"></span>
-      </div>
+    <div class="image-gallery">
+      <img
+        data-src="https://via.placeholder.com/1200x800"
+        alt="Зображення 1"
+        class="lazy-image"
+      />
+      <img
+        data-src="https://via.placeholder.com/1200x800"
+        alt="Зображення 2"
+        class="lazy-image"
+      />
+      <img
+        data-src="https://via.placeholder.com/1200x800"
+        alt="Зображення 3"
+        class="lazy-image"
+      />
+      <img
+        data-src="https://via.placeholder.com/1200x800"
+        alt="Зображення 4"
+        class="lazy-image"
+      />
+      <img
+        data-src="https://via.placeholder.com/1200x800"
+        alt="Зображення 5"
+        class="lazy-image"
+      />
     </div>
 
-    <div class="slider">
-  <input type="range" min="1" max="100" value="50" class="slider__input" />
-  <img src="https://picsum.photos/536/354" class="slider__image" />
-</div>
-
-<div id="box"></div>
-
-    <script
-      src="https://cdnjs.cloudflare.com/ajax/libs/lodash.js/4.17.21/lodash.min.js"
-      integrity="sha512-WFN04846sdKMIP5LKNphMaWzU7YpMyCU245etK3g/2ARYbPK9Ub18eG+ljU96qKRCWh+quCY7yefSmlkQw1ANQ=="
-      crossorigin="anonymous"
-      referrerpolicy="no-referrer"
-    ></script>
-
-    <script type="text/javascript" charset="utf-8" src="script.js"></script>
-    <script type="text/javascript" charset="utf-8" src="homework.js"></script>
+    <script src="js/lesson.js"></script>
   </body>
 </html>
