@@ -1,0 +1,19 @@
+<!-- template.hbs -->
+<table>
+    <thead>
+        <tr>
+            <th>Ім'я</th>
+            <th>Вік</th>
+            <th>Email</th>
+        </tr>
+    </thead>
+    <tbody>
+        {{#each users}}
+        <tr>
+            <td>{{name}}</td>
+            <td>{{age}}</td>
+            <td>{{email}}</td>
+        </tr>
+        {{/each}}
+    </tbody>
+</table>
