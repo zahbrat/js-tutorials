@@ -1,0 +1,37 @@
+<!DOCTYPE html>
+<html lang="en">
+  <head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>Таймери</title>
+    <style>
+      .animation {
+        width: 50px;
+        height: 50px;
+        background-color: red;
+        animation: blink 1s infinite;
+      }
+      @keyframes blink {
+        0%,
+        100% {
+          opacity: 1;
+        }
+        50% {
+          opacity: 0;
+        }
+      }
+    </style>
+  </head>
+  <body>
+    <h1>Таймер 1: Відлік з 1 години</h1>
+    <p id="timer1">60:00</p>
+    <p id="message1"></p>
+
+    <h1>Таймер 2: Відлік з 30 секунд</h1>
+    <p id="timer2">30.000</p>
+    <div id="animation" style="display: none" class="animation"></div>
+    <button id="startButton" disabled>Почати знову</button>
+
+    <script src="script.js"></script>
+  </body>
+</html>
