@@ -1,0 +1,53 @@
+<!DOCTYPE html>
+<html>
+  <head>
+    <title>Домашнє завдання</title>
+    <style>
+      .box,
+      .target {
+        position: absolute;
+      }
+      .box {
+        width: 50px;
+        height: 50px;
+        background-color: red;
+      }
+      .target {
+        width: 50px;
+        height: 50px;
+        background-color: blue;
+        cursor: pointer;
+      }
+    </style>
+  </head>
+  <body>
+    <section id="task1">
+      <h2>Таймер інтервалу</h2>
+      <p id="intervalMessage"></p>
+    </section>
+
+    <section id="task2">
+      <h2>Анімація елементів</h2>
+      <div id="animatedBox" class="box"></div>
+    </section>
+
+    <section id="task3">
+      <h2>Інтерактивна гра</h2>
+      <div id="game"></div>
+      <p>Очки: <span id="score">0</span></p>
+    </section>
+
+    <section id="task4">
+      <h2>Контроль часу</h2>
+      <input
+        type="number"
+        id="timeInput"
+        placeholder="Введіть час у секундах"
+      />
+      <button onclick="startTimer()">Почати</button>
+      <p id="timeMessage"></p>
+    </section>
+
+    <script src="script.js"></script>
+  </body>
+</html>
