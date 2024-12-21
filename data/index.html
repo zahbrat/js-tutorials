@@ -1,0 +1,104 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Countdown Timer</title>
+  <style>
+    body {
+      font-family: Arial, sans-serif;
+      text-align: center;
+      margin-top: 50px;
+    }
+    .timer {
+      display: flex;
+      justify-content: center;
+      gap: 20px;
+    }
+    .field {
+      text-align: center;
+    }
+    .value {
+      font-size: 2rem;
+      font-weight: bold;
+    }
+    .label {
+      font-size: 1rem;
+      color: #555;
+    }
+  </style>
+</head>
+<body>
+  <div class="timer" id="timer-1">
+    <div class="field">
+      <span class="value" data-value="days">00</span>
+      <span class="label">Days</span>
+    </div>
+    <div class="field">
+      <span class="value" data-value="hours">00</span>
+      <span class="label">Hours</span>
+    </div>
+    <div class="field">
+      <span class="value" data-value="mins">00</span>
+      <span class="label">Minutes</span>
+    </div>
+    <div class="field">
+      <span class="value" data-value="secs">00</span>
+      <span class="label">Seconds</span>
+    </div>
+  </div>
+
+  <script>
+    class CountdownTimer {
+      constructor({ selector, targetDate }) {
+        this.timerEl = document.querySelector(selector);
+        this.targetDate = targetDate;
+
+        this.refs = {
+          days: this.timerEl.querySelector('[data-value="days"]'),
+          hours: this.timerEl.querySelector('[data-value="hours"]'),
+          mins: this.timerEl.querySelector('[data-value="mins"]'),
+          secs: this.timerEl.querySelector('[data-value="secs"]'),
+        };
+
+        this.start();
+      }
+
+      start() {
+        this.updateTimer();
+        this.intervalId = setInterval(() => {
+          this.updateTimer();
+        }, 1000);
+      }
+
+      updateTimer() {
+        const time = this.targetDate - Date.now();
+        if (time < 0) {
+          clearInterval(this.intervalId);
+          this.showTime(0, 0, 0, 0);
+          return;
+        }
+
+        const days = Math.floor(time / (1000 * 60 * 60 * 24));
+        const hours = Math.floor((time % (1000 * 60 * 60 * 24)) / (1000 * 60 * 60));
+        const mins = Math.floor((time % (1000 * 60 * 60)) / (1000 * 60));
+        const secs = Math.floor((time % (1000 * 60)) / 1000);
+
+        this.showTime(days, hours, mins, secs);
+      }
+
+      showTime(days, hours, mins, secs) {
+        this.refs.days.textContent = String(days).padStart(2, '0');
+        this.refs.hours.textContent = String(hours).padStart(2, '0');
+        this.refs.mins.textContent = String(mins).padStart(2, '0');
+        this.refs.secs.textContent = String(secs).padStart(2, '0');
+      }
+    }
+
+    new CountdownTimer({
+      selector: '#timer-1',
+      targetDate: new Date('Jul 17, 2025'),
+    });
+  </script>
+</body>
+</html>
